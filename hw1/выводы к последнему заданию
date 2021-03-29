@@ -1,1 +1,14 @@
 В первую очередь, результат отличается из-за того, что max_features 30000 вместо 20, так же из-за различного набора слов.
+
+Также в последнем задании случайно обучил на тестсете, если переписать на:
+
+vectorizer =  TfidfVectorizer(max_features = 30000)
+a = vectorizer.fit_transform(test_data)
+a = vectorizer.transform(data)
+a = a.toarray()
+clf = KNeighborsClassifier(n_neighbors=10, metric='cosine')
+clf.fit(a, target)
+test = vectorizer.transform(test_data)
+test = test.toarray()
+
+то получится ~51%.
